@@ -9,19 +9,19 @@ import {
 
 import shopTypes from './shop.types';
 
-import { fetchCollectionsAsync, fetchCollectionsStart } from './shop.sagas';
+import { fetchCollections, onFetchCollectionsStart } from './shop.sagas';
 
 describe('fetch collections start saga', () => {
   it('should trigger on FETCH_COLLECTIONS_START', () => {
-    const generator = fetchCollectionsStart();
+    const generator = onFetchCollectionsStart();
     expect(generator.next().value).toEqual(
-      takeLatest(ShopActionTypes.FETCH_COLLECTIONS_START, fetchCollectionsAsync)
+      takeLatest(shopTypes.FETCH_COLLECTIONS_START, fetchCollections)
     );
   });
 });
 
 describe('fetch collections async saga', () => {
-  const generator = fetchCollectionsAsync();
+  const generator = fetchCollections();
 
   it('should call firestore collection ', () => {
     const getCollection = jest.spyOn(firestore, 'collection');
@@ -32,7 +32,7 @@ describe('fetch collections async saga', () => {
   it('should call convertCollectionsSnapshot saga ', () => {
     const mockSnapshot = {};
     expect(generator.next(mockSnapshot).value).toEqual(
-      call(convertCollectionsSnapshotToMap, mockSnapshot)
+      call(convertCollectionsSnapshotTomap, mockSnapshot)
     );
   });
 
@@ -42,7 +42,7 @@ describe('fetch collections async saga', () => {
     };
 
     expect(generator.next(mockCollectionsMap).value).toEqual(
-      put(fetchCollectionsSuccess(mockCollectionsMap))
+      put(fetchcollectionsuccess(mockCollectionsMap))
     );
   });
 
@@ -50,7 +50,7 @@ describe('fetch collections async saga', () => {
     const newGenerator = fetchCollectionsAsync();
     newGenerator.next();
     expect(newGenerator.throw({ message: 'error' }).value).toEqual(
-      put(fetchCollectionsFailure('error'))
+      put(fetchcollectionfailure('error'))
     );
   });
 });
