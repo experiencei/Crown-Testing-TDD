@@ -38,5 +38,22 @@ describe('CheckoutItem component', () => {
     expect(mockClearItem).toHaveBeenCalled();
   });
 
+  it('should call removeItem when left arrow is clicked', () => {
+    wrapper
+    .find('QuantityContainer')
+    .childAt(0)
+    .simulate('click');
 
+
+    expect(mockRemoveItem).toHaveBeenCalled();
+     });
+   
+ it('should call addItem when right arrow is clicked', () => {
+        wrapper
+          .find('QuantityContainer')
+          .childAt(2)
+          .simulate('click');
+    
+        expect(mockAddItem).toHaveBeenCalled();
+      });
 })
