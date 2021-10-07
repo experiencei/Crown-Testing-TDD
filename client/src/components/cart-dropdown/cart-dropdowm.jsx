@@ -19,7 +19,8 @@ import { Cartdropdown , Emptymessage , Cartitems } from "./cart-dropdown.jsx"
         (<Emptymessage> Your Cart is empty</Emptymessage>)
       }
     </Cartitems>
-    <Custombtn onClick={ () =>{ 
+    <Custombtn
+     onClick={ () =>{ 
       history.push("/checkout")
       dispatch(toggleCartHidden())
       }}>GO TO CHECKOUT</Custombtn>

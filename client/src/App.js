@@ -7,7 +7,7 @@ import React, { useEffect ,lazy , Suspense} from 'react';
  import { createStructuredSelector } from "reselect";
  import { selectUser } from "../src/redux/user/user.selector"
 import { checkUserSession } from './redux/user/user.actions.';
- import { Route ,Switch ,Redirect } from "react-router-dom";nnn
+ import { Route ,Switch ,Redirect } from "react-router-dom";
 
 const Homepages = lazy(() => import('./components/directory/directory'));
 const Shoppage = lazy(() => import('./pages/shoppages/shoppage'));

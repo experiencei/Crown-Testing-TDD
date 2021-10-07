@@ -17,7 +17,7 @@ return (
           &#10094;
         </div>
         <span className='value'>{quantity}</span>
-        <div className='arrow' onClick={() => addCart(carted)}>
+        <div className='arrow' id='add' onClick={() => addCart(carted)}>
           &#10095;
         </div>
       </span>
