@@ -1,5 +1,5 @@
 import { directoryTypes } from "./directoryTypes"
-const initialState = {
+export const initialState = {
     sections : [
         {
           title: 'hats',
