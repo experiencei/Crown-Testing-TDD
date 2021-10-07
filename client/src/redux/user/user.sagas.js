@@ -17,16 +17,7 @@ yield put(SignInSuccess({
 }
 
 
-export function* userSession(){
-  try {
-      const userAuth = yield getCurrentUser();
-      if(!userAuth) return;
-      yield onUserAuthchange(userAuth);
-      
-  } catch (error) {
-      yield put(SignInFailure(error))
-  }
-}
+
 
 export function* signInWithGooglepop() {
     try {
@@ -46,6 +37,25 @@ export function* signInWithEmail({payload :{ email , password}}) {
     }
 }
 
+export function* userSession(){
+    try {
+        const userAuth = yield getCurrentUser();
+        if(!userAuth) return;
+        yield onUserAuthchange(userAuth);
+        
+    } catch (error) {
+        yield put(SignInFailure(error))
+    }
+  }
+
+export function* signOut() {
+  try {
+    yield auth.signOut();
+    yield put(signOutSuccess());
+  } catch (error) {
+    yield put(signOutFailure(error));
+  }
+}
 export function* signUp({payload :{ email , password , displayName}}) {
     try {
     const { user } = 
@@ -58,15 +68,6 @@ export function* signUp({payload :{ email , password , displayName}}) {
 
 export function* signUptoSignIn({payload : {user , additionalData}}){
    yield onUserAuthchange(user , additionalData)
-}
-
-export function* signOut() {
-  try {
-    yield auth.signOut();
-    yield put(signOutSuccess());
-  } catch (error) {
-    yield put(signOutFailure(error));
-  }
 }
 
 export function* onGooglesignin() {
