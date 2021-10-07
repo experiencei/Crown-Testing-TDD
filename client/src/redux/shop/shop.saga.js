@@ -7,7 +7,7 @@ import {
   fetchcollectionfailure
 } from '../shop/shop.action';
 
-import ShopActionTypes from './shop.types';
+import shopTypes from './shop.types';
 
 export function* fetchCollections() {
   try {
@@ -24,5 +24,5 @@ export function* fetchCollections() {
 }
 
 export function* onFetchCollectionsStart() {
-  yield takeLatest(ShopActionTypes.FETCH_COLLECTIONS_START, fetchCollections);
+  yield takeLatest(shopTypes.FETCH_COLLECTIONS_START, fetchCollections);
 }
